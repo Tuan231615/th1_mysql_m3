@@ -1,0 +1,27 @@
+create database Quanlydiemthi;
+use Quanlydiemthi;
+create table Hocsinh(
+Mahocvien varchar(45) primary key,
+tenhocvien varchar(45),
+Ngaysinh datetime,
+Lop varchar(45),
+GT varchar(45)
+);
+create table monhoc(
+mamh varchar(20) primary key,
+tenmh varchar(45)
+);
+create table bangdiem(
+mahs varchar(45), foreign key (mahs) references Hocsinh(Mahocvien),
+mamh varchar(45), foreign key (mamh) references monhoc(mamh),
+diemthi int,
+ngayketthuc datetime,
+primary key (mahs, mamh)
+);
+create table giaovien(
+magv varchar(45) primary key,
+tengv varchar(45),
+sdt varchar(10)
+);
+alter table monhoc add magv varchar(45);
+alter table monhoc add constraint fk_magv foreign key (magv) references giaovien(magv);
